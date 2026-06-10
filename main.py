@@ -665,14 +665,20 @@ def preload_models():
     """Pre-load all models at startup to avoid first-request timeout."""
     print("[XDR] Pre-loading static models...")
     for name in MODEL_OPTIONS:
-        m = load_model(name)
-        status = "OK" if m else "NOT FOUND"
+        try:
+            m = load_model(name)
+            status = "OK" if m else "NOT FOUND"
+        except Exception as e:
+            status = f"ERROR: {str(e)[:50]}"
         print(f"[XDR]   {name}: {status}")
 
     print("[XDR] Pre-loading dynamic models...")
     for name in DYNAMIC_MODEL_OPTIONS:
-        m = load_dynamic_model(name)
-        status = "OK" if m else "NOT FOUND"
+        try:
+            m = load_dynamic_model(name)
+            status = "OK" if m else "NOT FOUND"
+        except Exception as e:
+            status = f"ERROR: {str(e)[:50]}"
         print(f"[XDR]   {name}: {status}")
 
     print("[XDR] All models ready.")
