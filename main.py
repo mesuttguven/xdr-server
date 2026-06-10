@@ -156,7 +156,11 @@ def load_model(model_name: str):
         return _loaded_models[model_name]
     if not TF_AVAILABLE:
         return None
-    path = MODEL_DIR / f"{model_name}.h5"
+    # inceptionv3 için .keras formatı kullan
+    if model_name == "inceptionv3":
+        path = MODEL_DIR / "inceptionv3_v2.keras"
+    else:
+        path = MODEL_DIR / f"{model_name}.h5"
     if not path.exists():
         return None
     print(f"[XDR] Loading model: {model_name}.h5 ...")
