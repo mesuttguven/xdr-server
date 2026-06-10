@@ -666,13 +666,13 @@ def preload_models():
     print("[XDR] Pre-loading static models...")
     for name in MODEL_OPTIONS:
         m = load_model(name)
-        status = "✓" if m else "✗ (not found)"
+        status = "OK" if m else "NOT FOUND"
         print(f"[XDR]   {name}: {status}")
 
     print("[XDR] Pre-loading dynamic models...")
     for name in DYNAMIC_MODEL_OPTIONS:
         m = load_dynamic_model(name)
-        status = "✓" if m else "✗ (not found)"
+        status = "OK" if m else "NOT FOUND"
         print(f"[XDR]   {name}: {status}")
 
     print("[XDR] All models ready.")
