@@ -158,7 +158,7 @@ def load_model(model_name: str):
         return None
     # inceptionv3 için .keras formatı kullan
     if model_name == "inceptionv3":
-        path = MODEL_DIR / "inceptionv3_v2.keras"
+        path = MODEL_DIR / "inceptionv3_legacy.h5"
     else:
         path = MODEL_DIR / f"{model_name}.h5"
     if not path.exists():
