@@ -297,9 +297,18 @@ def process_file(filepath: str, cfg: dict):
         return
 
     # Wait for file to finish writing
-    time.sleep(1.5)
+    time.sleep(3)
     if not os.path.exists(filepath):
         return
+    # Wait until file size stabilizes
+    size1 = os.path.getsize(filepath)
+    time.sleep(2)
+    try:
+        size2 = os.path.getsize(filepath)
+    except:
+        return
+    if size1 != size2:
+        time.sleep(3)
 
     # Compute hash
     sha256 = compute_sha256(filepath)
