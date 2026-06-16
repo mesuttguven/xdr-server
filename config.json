@@ -1,0 +1,21 @@
+{
+  "server_url": "http://192.168.1.100:8000",
+  "model": "ensemble",
+  "quarantine_dir": "C:\\XDR_Quarantine",
+  "log_file": "C:\\XDR_Agent\\agent.log",
+  "auto_quarantine_threshold": 0.50,
+  "auto_delete_threshold": 0.85,
+  "scan_on_startup": true,
+  "monitored_extensions": [
+    ".exe", ".dll", ".bat", ".cmd", ".ps1",
+    ".vbs", ".js", ".jar", ".msi", ".scr"
+  ],
+  "monitored_folders": [
+    "Downloads",
+    "Desktop",
+    "AppData\\Local\\Temp"
+  ],
+  "excluded_hashes": [],
+  "api_timeout_seconds": 120,
+  "retry_attempts": 2
+}
