@@ -164,7 +164,14 @@ def load_model(model_name: str):
     if not path.exists():
         return None
     print(f"[XDR] Loading model: {model_name}.h5 ...")
-    m = tf.keras.models.load_model(str(path))
+    from keras.layers import DepthwiseConv2D as _DWConv
+
+    class _FixedDW(_DWConv):
+        def __init__(self, **kwargs):
+            kwargs.pop("groups", None)
+            super().__init__(**kwargs)
+
+    m = tf.keras.models.load_model(str(path), custom_objects={"DepthwiseConv2D": _FixedDW}, compile=False)
     _loaded_models[model_name] = m
     print(f"[XDR] Model loaded: {model_name}")
     return m
@@ -478,7 +485,14 @@ def load_dynamic_model(model_name: str = "random_forest"):
         elif filename.endswith(".keras"):
             if not TF_AVAILABLE:
                 return None
-            m = tf.keras.models.load_model(str(path))
+            from keras.layers import DepthwiseConv2D as _DWConv
+
+    class _FixedDW(_DWConv):
+        def __init__(self, **kwargs):
+            kwargs.pop("groups", None)
+            super().__init__(**kwargs)
+
+    m = tf.keras.models.load_model(str(path), custom_objects={"DepthwiseConv2D": _FixedDW}, compile=False)
         else:
             return None
         _dynamic_models[model_name] = m
