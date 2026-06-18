@@ -487,12 +487,12 @@ def load_dynamic_model(model_name: str = "random_forest"):
                 return None
             from keras.layers import DepthwiseConv2D as _DWConv
 
-    class _FixedDW(_DWConv):
-        def __init__(self, **kwargs):
-            kwargs.pop("groups", None)
-            super().__init__(**kwargs)
+            class _FixedDW(_DWConv):
+                def __init__(self, **kwargs):
+                    kwargs.pop("groups", None)
+                    super().__init__(**kwargs)
 
-    m = tf.keras.models.load_model(str(path), custom_objects={"DepthwiseConv2D": _FixedDW}, compile=False)
+            m = tf.keras.models.load_model(str(path), custom_objects={"DepthwiseConv2D": _FixedDW}, compile=False)
         else:
             return None
         _dynamic_models[model_name] = m
