@@ -579,7 +579,7 @@ def run_dynamic_inference(pcap_path: str, model_name: str = "random_forest") -> 
             classes    = list(model.classes_)
             mal_idx    = classes.index("malware") if "malware" in classes else 1
             score      = float(proba[mal_idx])
-            verdict    = str(prediction)
+            verdict    = "malicious" if str(prediction) == "malware" else "benign"
 
         elif model_name == "deep_learning":
             import numpy as _np_dl
