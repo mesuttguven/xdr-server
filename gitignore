@@ -1,0 +1,53 @@
+# ML Models (too large for GitHub - store on Google Drive)
+*.h5
+*.joblib
+*.pkl
+*.pt
+*.pth
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Uploads & Quarantine (runtime directories)
+uploads/
+quarantine/
+*.exe
+*.dll
+*.bin
+
+# PCAP files (can be large)
+*.pcap
+*.pcapng
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
